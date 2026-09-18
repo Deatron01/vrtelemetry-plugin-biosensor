@@ -1,0 +1,11 @@
+{
+  "id": "polar-h10",
+  "display_name": "Polar H10",
+  "transport": "ble",
+  "match": { "service_uuid": "0000180d-0000-1000-8000-00805f9b34fb", "name_prefix": "Polar H10" },
+  "channels": {
+    "heart_rate_bpm": { "parser": "gatt_hr.bpm" },
+    "rr_interval_ms": { "parser": "gatt_hr.rr" }
+  },
+  "config": {}
+}

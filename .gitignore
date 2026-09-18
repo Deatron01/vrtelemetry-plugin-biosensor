@@ -1,0 +1,32 @@
+﻿# Byte-compiled / cache
+__pycache__/
+*.pyc
+
+# ROS / catkin
+devel/
+build/
+install/
+logs/
+.catkin_tools/
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+*.csproj
+*.sln
+*.userprefs
+.vs/
+
+# OS / editor
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Unity per-user editor state
+UserSettings/

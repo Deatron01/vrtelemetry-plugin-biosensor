@@ -1,0 +1,15 @@
+{
+  "id": "lsl-generic-hr",
+  "display_name": "Generic LSL heart-rate stream",
+  "transport": "lsl",
+  "match": { "stream_type": "HeartRate" },
+  "channels": {
+    "heart_rate_bpm": { "parser": "lsl.channel0" }
+  },
+  "config": {
+    "channel_map": { "0": "heart_rate_bpm" },
+    "resolve_timeout_s": 5.0,
+    "pull_timeout_s": 1.0,
+    "max_consecutive_timeouts": 5
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "fake-source",
+  "display_name": "Fake source (development only)",
+  "transport": "fake",
+  "match": {},
+  "channels": {
+    "heart_rate_bpm": { "parser": "fake.hr" }
+  },
+  "config": {
+    "rate_hz": 1.0,
+    "baseline_bpm": 70,
+    "variance_bpm": 3,
+    "dropout_probability": 0.01,
+    "dropout_duration_s": [3, 8]
+  }
+}

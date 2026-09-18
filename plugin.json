@@ -1,0 +1,12 @@
+{
+  "plugin_id": "biosensor-plugin-01",
+  "name": "Biosensor Plugin",
+  "version": "0.4.0",
+  "description": "Out-of-process producer that connects to external physiological sensors (chest straps, optical armbands, lab hardware) and streams measurements into an active VRTelemetry recording session via the Hub's biosensor ingest API. Owns radios and devices only -- no storage, sessions, consent, or UI; reads no participant data and writes no files that outlive a session. Direct device connection only (no vendor cloud, no participant account); ships measurements only, never a stress/arousal/engagement inference. Supports BLE Heart Rate (0x180D) straps and LSL-published streams; BLE has not been verified against real hardware in this environment -- see README.md.",
+  "entrypoint": ["python", "app.py"],
+  "requirements_file": "requirements.txt",
+  "protocol_version": 1,
+  "author": "VRTelemetry project",
+  "homepage": "https://github.com/Deatron01/biosensor-plugin-01",
+  "ui_port": 8787
+}
