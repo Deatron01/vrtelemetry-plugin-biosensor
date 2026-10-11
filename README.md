@@ -1,4 +1,13 @@
-# Biosensor Plugin
+<p align="center">
+  <img src="./.github/assets/banner.svg" alt="Biosensor Plugin — External physiological sensors, into a VRTelemetry session." width="100%" />
+</p>
+
+<p align="center">
+  <samp>PYTHON · BLUETOOTH LE · VRTELEMETRY PLUGIN</samp><br />
+  <samp><a href="https://github.com/Deatron01/vrtelemetry-plugin-ros-unity-bridge">ROS 2 / UNITY BRIDGE PLUGIN ↗</a></samp>
+</p>
+
+### <samp>01 — WHAT IT IS</samp>
 
 > Protocol/wire format for the Hub-facing session-lifecycle socket is
 > specified once, for every VRTelemetry plugin, in the host repo's
@@ -42,7 +51,7 @@ that a stalled Bluetooth stack, a vanished adapter, or a misbehaving vendor
 SDK costs the study one data column, never the recording itself. See
 `plan.md` section 1.
 
-## The two rules that are not negotiable
+### <samp>02 — THE TWO RULES THAT ARE NOT NEGOTIABLE</samp>
 
 **No vendor cloud, no participant account.** Fitbit Web API, Garmin Connect,
 Withings, Oura, Polar AccessLink, Apple Health -- all prohibited. Direct
@@ -58,7 +67,7 @@ metric, or emotion estimate, ever -- matching the Core Hub's own
 both of which raise unconditionally pending the host's EU AI Act 5(1)(f)
 legal opinion. If this repo ever grows a `stress.py`, it raises too.
 
-## Status of this repository
+### <samp>03 — STATUS OF THIS REPOSITORY</samp>
 
 BIO-1 through BIO-9 from `plan.md` section 10 are built; this README is
 BIO-10. **BIO-11 through BIO-15 (ANT+, serial/Bluetooth Classic, extended
@@ -80,7 +89,7 @@ should be read as having started them.
 | BIO-10 | This file | -- |
 | -- (not a plan.md ticket) | Local dashboard (`ui_server.py`) | `tests/test_ui_server.py` -- real HTTP requests against a running plugin: serves HTML, `/api/state` tracks a device going `connected` with real growing sample history, `active_session_id` follows the real session lifecycle, and an on-demand BLE scan always finishes cleanly. Not part of the host protocol; see "Local dashboard" below. |
 
-## Supported devices
+### <samp>04 — SUPPORTED DEVICES</samp>
 
 **BLE (Heart Rate service, 0x180D):** any device that implements the
 standard GATT Heart Rate Measurement characteristic (0x2A37). `devices/polar-h10.json`
@@ -113,7 +122,7 @@ ticket here). **Blood pressure is not a channel** (plan.md section 8) --
 there is no validated continuous consumer BP device; the host models BP as
 a discrete pre/post-session measurement, not something this plugin streams.
 
-## Frontend
+### <samp>05 — FRONTEND</samp>
 
 Per `plan.md` section 1 this plugin "owns nothing about ... the UI" in the
 sense that matters -- it has no say over the recording, consent, or session
@@ -147,7 +156,7 @@ bpm value* a strap just sent, or what's advertising nearby that isn't set
 up yet -- that level of detail is legitimately this plugin's own job, not
 the host's. See "Local dashboard" immediately below.
 
-## Local dashboard
+### <samp>06 — LOCAL DASHBOARD</samp>
 
 This plugin ships its own small local web UI, `ui_server.py` -- on by
 default, no separate install. Run `python app.py` (standalone or under
@@ -193,7 +202,7 @@ its sample history actually growing, `active_session_id` follows the real
 session lifecycle, and a BLE scan always finishes cleanly whether or not a
 real adapter is present.
 
-## Prerequisites
+### <samp>07 — PREREQUISITES</samp>
 
 - **BLE:** a Bluetooth adapter, powered on, reachable by `bleak`'s backend
   for this platform (WinRT on Windows, the deployment target; BlueZ/D-Bus on
@@ -208,7 +217,7 @@ real adapter is present.
   (plan.md section 6.1) -- if a stream that's definitely running isn't
   found, that's the first thing to check.
 
-## Running standalone (development)
+### <samp>08 — RUNNING STANDALONE (DEVELOPMENT)</samp>
 
 Both of the plugin's Hub-facing surfaces have a mock counterpart, which is
 still the fastest loop for day-to-day development even now that a real
@@ -259,7 +268,7 @@ before `session_start` or after `session_stop`, even past the fake source's
 own sample period; no sample ever carries `heart_rate_bpm == 0.0` (the
 "never send a stale value" rule).
 
-## Environment variables
+### <samp>09 — ENVIRONMENT VARIABLES</samp>
 
 | Variable | Set by | Meaning |
 |---|---|---|
@@ -276,7 +285,7 @@ own sample period; no sample ever carries `heart_rate_bpm == 0.0` (the
 | `BIOSENSOR_UI_HOST` | operator (optional) | Dashboard bind address. Defaults to `127.0.0.1` (loopback only). |
 | `BIOSENSOR_UI_PORT` | operator (optional) | Dashboard port. Defaults to `8787`, matching `plugin.json`'s `ui_port`. |
 
-## Event contract
+### <samp>10 — EVENT CONTRACT</samp>
 
 Consumes, from `/ws/hub/telemetry` (read-only -- never sends anything back,
 per the host protocol's compatibility rule 6):
@@ -317,7 +326,7 @@ Nothing is written to disk -- this plugin has no `output/` directory, unlike
 `medical-plugin-01`; per `plan.md` section 1 it reads no participant data
 and writes no files that outlive a session.
 
-## Adding a device
+### <samp>11 — ADDING A DEVICE</samp>
 
 If it speaks a transport this plugin already implements (`fake`, `ble`, or
 `lsl`), add a `devices/<name>.json` file -- see `devices/polar-h10.json`
@@ -328,3 +337,9 @@ A new *transport* (ANT+, serial -- BIO-11/BIO-12, both explicitly deferred)
 is a real code change: implement `transports.base.Transport`, register it
 in `devices/registry.py`'s `TRANSPORT_REGISTRY`, and it's immediately usable
 by any device profile naming it.
+
+<br />
+
+<p align="center">
+  <sub><samp>MORE WORK AT <a href="https://github.com/Deatron01">GITHUB.COM/DEATRON01</a></samp></sub>
+</p>
